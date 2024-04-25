@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <fstream>
 #include <cstdlib>
+#include <queue>
+#include <utility>
 using namespace std;
 
 // Function to check if pairing between bases is possible or not.
@@ -45,6 +47,7 @@ void countPairs(vector<vector<int>> &matching, vector<vector<int>> &mapped, stri
     }
 }
 
+
 // Function to print the input sequence and the pairs to a file "pairings.txt" 
 void printPairs(vector<vector<int>> &matching, vector<vector<int>> &mapped, string B) {
     ofstream outputFile("pairings.txt");
@@ -58,24 +61,47 @@ void printPairs(vector<vector<int>> &matching, vector<vector<int>> &mapped, stri
     int row = 0;
     int col = B.size() - 1;
     bool isMatched = false;
+    int left = 0;
+    int right = B.size()-1;
     // While loop to identify the base pairs
-    while (no_of_matches > 0 && row <= B.size() - 1 && col >= 0) {
-        if (mapped[row][col] >= 1) {
-            outputFile << row + 1 << " " << col + 1;
-            outputFile << endl;
+    queue<pair<int,int>> subproblems;
+    subproblems.push({left,right});
+    //cout<<"Pushed: 0 "<<left<<" "<<right<<"\n";
+    while(no_of_matches>0 && !subproblems.empty())
+    {
+        
+        left=subproblems.front().first;
+        right=subproblems.front().second;
+        //cout<<"In: "<<left<<" "<<left<<" "<<right<<"\n";
+        subproblems.pop();
+        if(mapped[left][right]>=1)
+        {
+            outputFile << mapped[left][right] << " " << right+1 << "\n";
+            //cout << "Pairing Found: "<<mapped[left][right] << " " << right+1 << "\n";
             no_of_matches--;
-            row++;
-            col--;
-            isMatched = true;
-        } else {
-            if (mapped[row + 1][col - 1] == 0) {
-                col--;
-            } else {
-                row++;
-                col--;
+            if(left+1<B.size() && right-1>mapped[left][right])
+            {
+                // Internal subproblem
+                subproblems.push({mapped[left][right],right-1});
+                //cout<<"\tPushed 1: "<<left+1<<" "<<mapped[left][right]<<" "<<right-1<<"\n";
             }
+            if(mapped[left][right]-2>left)
+            {
+                // Left subproblem
+                subproblems.push({left,mapped[left][right]-2});
+                //cout<<"\tPushed 2: "<<left<<" "<<left<<" "<<mapped[left][right]-2<<"\n";
+            }
+            
+            isMatched=true;
+        }
+        else if(right-1>left)
+        {
+            // If zero
+            subproblems.push({left,right-1});
+            //cout<<"\tPushed 3: "<<left<<" "<<left<<" "<<right-1<<"\n";
         }
     }
+    
     if (isMatched == false) {
         outputFile << 0 << " " << 0;
         outputFile << endl;
