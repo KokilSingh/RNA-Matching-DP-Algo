@@ -40,11 +40,39 @@ h2 {
 
 .container {
   display: flex;
-  gap: 20px;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  /* border: 2px solid black; */
+  gap: 20px;
+  /* other styles */
 }
+
+.comparison-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.comparison-container > div {
+  width: 45%; /* Adjust the width as needed */
+}
+
+.RNA, .Big {
+  width: auto;
+  height: 100%;
+  max-height: 350px; /* Adjust the maximum height as needed */
+  margin: 5px 0;
+  border: 2px solid black;
+  object-fit: contain; /* Preserve aspect ratio */
+}
+
+.comparison-container p {
+  margin: 5px 0;
+}
+
+
+
 
 .diagram {
   width: auto;
@@ -68,18 +96,6 @@ h2 {
   flex-direction: column;
 }
 
-.RNA {
-  width: 30%;
-  height: auto;
-  margin: 5px;
-  border: 2px solid black;
-}
-
-.Big {
-  width: 45%;
-  height: auto;
-  border: 2px solid black;
-}
 
 a {
   color: white;
