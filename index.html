@@ -169,7 +169,12 @@
       memory, the space complexity is O(n<sup>2</sup>).
     </p>
     <hr />
-
+    <div>
+      <h2>Issues In Coding</h2>
+      <p> Since the pseudocode does not take into consideration the constraints of programming languages, 
+        we had to modify the second recursive relationship for the case when i=t=0. Since, accessing a negative index in an array [OPT[i][t-1] => OPT[0][-1]] yields errors in C++, we handled it by directly replacing the term OPT[i][t-1] with zero when B[t] is Complementary to B[j] and t=0.</p>
+    </div>
+    <hr />
     <!-- Visualisation Part is left-->
     <h2 id="visualization">Visualization</h2>
     <hr />
