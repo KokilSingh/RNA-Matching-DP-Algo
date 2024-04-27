@@ -123,7 +123,7 @@
 
     <hr />
     <h2 id="dynamic-programming-solution">Dynamic Programming solution</h2>
-
+    <hr />
     <p>
       Let O(i,j) denote the maximum possible pairs between b<sub>i</sub>...b<sub
         >j</sub
@@ -132,16 +132,115 @@
 
     <p>Then the recurrence relation can be written as follows:</p>
 
-    <img
-      src="img/DP_Recurrence.png"
-      class="plot"
-      alt="DP Recurrence Relation"
-    />
+    <div id="image">
+      <img
+        src="img/DP_Recurrence.png"
+        class="plot"
+        alt="DP Recurrence Relation"
+      />
+    </div>
 
     <p>
       The maximum possible pairs between b<sub>1</sub>...b<sub>n</sub> will be
       in OPT(1,n)
     </p>
+
+    <hr />
+
+    <h2 id="discussion">Discussion on the Algorithm</h2>
+
+    <hr />
+    <p>
+      The DP solution only gives the maximum possible pairings according to the
+      rules. To actually find the pairs, we need to create one more table.
+    </p>
+
+    <p>We create two tables:</p>
+    <ol>
+      <li>Optimum Value Table: The table which follows the DP solution.</li>
+      <li>
+        Optimum Choice Table: The table which helps us in deciding what bases to
+        pair to get the optimum value.
+      </li>
+    </ol>
+
+    <p><u>Table filling:</u></p>
+    <ol>
+      <li>Optimum Value Table: follow the DP solution to fill the cells.</li>
+      <li>
+        Optimum Choice Table for a given (row,col):
+        <ul>
+          <li>If the bases cannot pair then the choice[row][col] = 0.</li>
+          <li>
+            If the bases can pair & if proceeding logic according to our code is
+            satisfied, choice[row][col] = t+1.
+          </li>
+        </ul>
+      </li>
+    </ol>
+
+    <p><u>Example: </u>GAAGGAGUCGUUCAU</p>
+    <div id="image">
+      <img src="img/table_filling.webp" alt="Table Filling" />
+    </div>
+
+    <p>
+      In the above example, the maximum possible pairs is stored in
+      values[1][15].
+    </p>
+    <p>
+      Now to find the pairs which result in maximum number, we have to look at
+      choices table:
+    </p>
+    <ul>
+      <li>
+        We start with the biggest subproblem by defining two variables left = 1
+        & right = 15
+      </li>
+      <li>We start from top right cell i.e. choice[1][15]</li>
+      <li>
+        We also create a queue to store which subproblems are to be evaluated.
+      </li>
+      <li>
+        Suppose for any cell choice[left][right]:
+        <ol>
+          <br />
+          <li>
+            If choice[left][right] = 0, add {left,right-1} to the queue, since
+            there is no pairing possible with the current base pair.
+          </li>
+          <br />
+          <li>
+            Else we have found one pairing which is
+            (choice[left][right],right+1):
+            <ul>
+              <br />
+              <li>
+                Now we evaluate the internal subproblem (if possible) by adding
+                {mapped[left][right],right-1} into the queue.
+              </li>
+              <br />
+              <li>
+                We also evaluate the left subproblem (if possible) by adding
+                {left,mapped[left][right]-2} to the queue.
+              </li>
+            </ul>
+          </li>
+          <br />
+          <li>
+            Evaluating both these subproblems ensure we capture the correct base
+            pairings.
+          </li>
+        </ol>
+      </li>
+    </ul>
+    <p>
+      According to this logic, we get {1,13},{2,12},{3,11},{4,9} as the 4
+      maximum possible pairings.
+    </p>
+    <div id="image">
+      <img div="answer" src="img/Answer.png" alt="Answer" />
+    </div>
 
     <!-- Dynamic Programming Section ends here-->
     <hr />
@@ -171,8 +270,15 @@
     <hr />
     <div>
       <h2>Issues In Coding</h2>
-      <p> Since the pseudocode does not take into consideration the constraints of programming languages, 
-        we had to modify the second recursive relationship for the case when i=t=0. Since, accessing a negative index in an array [OPT[i][t-1] => OPT[0][-1]] yields errors in C++, we handled it by directly replacing the term OPT[i][t-1] with zero when B[t] is Complementary to B[j] and t=0.</p>
+      <hr />
+      <p>
+        Since the pseudocode does not take into consideration the constraints of
+        programming languages, we had to modify the second recursive
+        relationship for the case when i=t=0. Since, accessing a negative index
+        in an array [OPT[i][t-1] => OPT[0][-1]] yields errors in C++, we handled
+        it by directly replacing the term OPT[i][t-1] with zero when B[t] is
+        Complementary to B[j] and t=0.
+      </p>
     </div>
     <hr />
     <!-- Visualisation Part is left-->
@@ -181,7 +287,6 @@
     <div class="container vertical">
       <p>Homo sapiens (human) XIST RNA A repeat URS0000699BD2_9606</p>
       <div class="comparison-container">
-        
         <div class="container">
           <img src="Exp_photo/exp1.png" alt="Exp RNA" class="Big RNA" />
           <p>Maximum Matches: 9</p>
@@ -191,7 +296,6 @@
           <p>Matchings: 7</p>
         </div>
       </div>
-
 
       <p>Homo sapiens (human) microRNA 320d-1 (ENSG00000211491.2)</p>
       <div class="comparison-container">
@@ -205,7 +309,6 @@
         </div>
       </div>
 
-      
       <p>Mus musculus (house mouse) mmu-miR-3074-5p URS000054204A_10090</p>
       <div class="comparison-container">
         <div class="container">
@@ -218,7 +321,6 @@
         </div>
       </div>
 
-      
       <p>hp1x-RNA (29-MER) from Homo sapiens (PDB 6DU4, chain B)</p>
       <div class="comparison-container">
         <div class="container">
@@ -231,7 +333,6 @@
         </div>
       </div>
 
-      
       <p>Danio rerio (zebrafish) snRNA BX323006.1 (ENSDARG00000099341.2)</p>
       <div class="comparison-container">
         <div class="container">
@@ -245,19 +346,58 @@
       </div>
     </div>
     <div>
-      <h2> Key Reasons For Difference </h2>
+      <h2>Key Reasons For Difference</h2>
       <ul>
-        <li>RNAs' structure is media-dependent. Through our algorithm we just get a RNA structure independent of internal and external interferences. 
-          At the same time the images of the RNA secondary structure from RNA Central are subject to the state most viable for experimental imagery. For example, X-ray crystallography required the RNA to be in a crystal form, whereas NMR has media-specific requirements for imaging, which may coerce the RNA to take up a different shape.</li>
-        <li>While base-pairing leads to a more stable RNA structure in theory, 
-            it need not be the structure with the least free energy, which guides RNA folding. 
-            For structures (in vivo), which don't have the conformation with the least thermodynamic stability, they are often guided by chaperones over a energy path that leads them  to a local minima in the energy landscape, 
-            thus leading to a biological-relevant stable structure. Another factor would also be post-transcriptional modifications, for tertiary/quaternary interactions with proteins, which would further block certain centers from base-pairing. 
+        <li>
+          RNAs' structure is media-dependent. Through our algorithm we just get
+          a RNA structure independent of internal and external interferences. At
+          the same time the images of the RNA secondary structure from RNA
+          Central are subject to the state most viable for experimental imagery.
+          For example, X-ray crystallography required the RNA to be in a crystal
+          form, whereas NMR has media-specific requirements for imaging, which
+          may coerce the RNA to take up a different shape.
         </li>
-        <li>Base-Base stacking is often the main reason behind the existence of stretches of single-stranded RNA, leading to the formation of tails, bulges and loops which could have otherwise been involved in base-pairing.</li>
+        <li>
+          While base-pairing leads to a more stable RNA structure in theory, it
+          need not be the structure with the least free energy, which guides RNA
+          folding. For structures (in vivo), which don't have the conformation
+          with the least thermodynamic stability, they are often guided by
+          chaperones over a energy path that leads them to a local minima in the
+          energy landscape, thus leading to a biological-relevant stable
+          structure. Another factor would also be post-transcriptional
+          modifications, for tertiary/quaternary interactions with proteins,
+          which would further block certain centers from base-pairing.
+        </li>
+        <li>
+          Base-Base stacking is often the main reason behind the existence of
+          stretches of single-stranded RNA, leading to the formation of tails,
+          bulges and loops which could have otherwise been involved in
+          base-pairing.
+        </li>
       </ul>
     </div>
 
     <!-- Visualisation part ends here-->
+
+    <hr />
+    <h2>References</h2>
+    <hr />
+    <ol>
+      <li>
+        <a
+          href="https://medium.com/@shashanksharma021401/finding-secondary-structure-of-rna-using-dynamic-programming-over-intervals-f8f1ce37ed32"
+          target="_blank"
+          >Finding Secondary Structure of RNA using Dynamic Programming over
+          intervals</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://youtu.be/1zBbqtNqNVc?si=ZTOIzWgZeO9BBeMl"
+          target="_blank"
+          >2-D Dynamic Programming (Algorithms 16)</a
+        >
+      </li>
+    </ol>
   </body>
 </html>
