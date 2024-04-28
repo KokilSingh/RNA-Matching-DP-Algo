@@ -1,0 +1,120 @@
+\doxysection{C\+:/\+Users/adapa/\+Acads BPHC/4-\/2/daa/asgn2/\+RNA-\/\+Matching-\/\+DP-\/\+Algo/visualize.cpp File Reference}
+\hypertarget{visualize_8cpp}{}\label{visualize_8cpp}\index{C:/Users/adapa/Acads BPHC/4-\/2/daa/asgn2/RNA-\/Matching-\/DP-\/Algo/visualize.cpp@{C:/Users/adapa/Acads BPHC/4-\/2/daa/asgn2/RNA-\/Matching-\/DP-\/Algo/visualize.cpp}}
+
+
+This file contains RNA Folding algorithm visualization.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$queue$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{visualize_8cpp_a5895528cda3991e15fe1a76b4dae4405}{complementary}} (char a, char b)
+\begin{DoxyCompactList}\small\item\em Function to check if pairing between bases is possible or not. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{visualize_8cpp_ab6f4fb37eb5b09830706149f24e3704b}{count\+Pairs}} (vector$<$ vector$<$ int $>$ $>$ \&matching, vector$<$ vector$<$ int $>$ $>$ \&mapped, string \&B)
+\item 
+void \mbox{\hyperlink{visualize_8cpp_a2f757d7f7ef5d47383bf71cbb1458f11}{print\+Pairs}} (vector$<$ vector$<$ int $>$ $>$ \&matching, vector$<$ vector$<$ int $>$ $>$ \&mapped, string B)
+\item 
+int \mbox{\hyperlink{visualize_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains RNA Folding algorithm visualization. 
+
+This program visualizes the RNA folding problem by determining the maximum number of possible pairings and writing the pairings to an output file. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{visualize_8cpp_a5895528cda3991e15fe1a76b4dae4405}\label{visualize_8cpp_a5895528cda3991e15fe1a76b4dae4405} 
+\index{visualize.cpp@{visualize.cpp}!complementary@{complementary}}
+\index{complementary@{complementary}!visualize.cpp@{visualize.cpp}}
+\doxysubsubsection{\texorpdfstring{complementary()}{complementary()}}
+{\footnotesize\ttfamily bool complementary (\begin{DoxyParamCaption}\item[{char}]{a,  }\item[{char}]{b }\end{DoxyParamCaption})}
+
+
+
+Function to check if pairing between bases is possible or not. 
+
+Check if pairing between bases is possible.
+
+A can pair with U, C can pair with G.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & First base \\
+\hline
+{\em b} & Second base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if pairing is possible, False otherwise
+\end{DoxyReturn}
+\Hypertarget{visualize_8cpp_ab6f4fb37eb5b09830706149f24e3704b}\label{visualize_8cpp_ab6f4fb37eb5b09830706149f24e3704b} 
+\index{visualize.cpp@{visualize.cpp}!countPairs@{countPairs}}
+\index{countPairs@{countPairs}!visualize.cpp@{visualize.cpp}}
+\doxysubsubsection{\texorpdfstring{countPairs()}{countPairs()}}
+{\footnotesize\ttfamily void count\+Pairs (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ int $>$ $>$ \&}]{matching,  }\item[{vector$<$ vector$<$ int $>$ $>$ \&}]{mapped,  }\item[{string \&}]{B }\end{DoxyParamCaption})}
+
+Function to count the maximum number of pairings possible with the given rules
+
+This function writes the input RNA sequence and the identified pairs to an output file named "{}pairings.\+txt"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em matching} & Matrix storing the maximum number of pairings \\
+\hline
+{\em mapped} & Matrix storing the mapping information for pairings \\
+\hline
+{\em B} & Input RNA sequence\\
+\hline
+\end{DoxyParams}
+Starting from 5 to incorporate Rule 1 (No sharp turns)\Hypertarget{visualize_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{visualize_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{visualize.cpp@{visualize.cpp}!main@{main}}
+\index{main@{main}!visualize.cpp@{visualize.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Check if the filename is provided as command line argument
+
+Open the input file
+
+Initialize tables
+
+Count the number of pairs
+
+Write the number of pairs to a file
+
+Execute the Python file named "{}1.\+py"{}\Hypertarget{visualize_8cpp_a2f757d7f7ef5d47383bf71cbb1458f11}\label{visualize_8cpp_a2f757d7f7ef5d47383bf71cbb1458f11} 
+\index{visualize.cpp@{visualize.cpp}!printPairs@{printPairs}}
+\index{printPairs@{printPairs}!visualize.cpp@{visualize.cpp}}
+\doxysubsubsection{\texorpdfstring{printPairs()}{printPairs()}}
+{\footnotesize\ttfamily void print\+Pairs (\begin{DoxyParamCaption}\item[{vector$<$ vector$<$ int $>$ $>$ \&}]{matching,  }\item[{vector$<$ vector$<$ int $>$ $>$ \&}]{mapped,  }\item[{string}]{B }\end{DoxyParamCaption})}
+
+Function to print the input sequence and the pairs to a file "{}pairings.\+txt"{}
+
+This function handles file input, initializes data structures, calls functions to count pairings and write them to a file, and executes a Python script for visualization.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments \\
+\hline
+{\em argv} & Command-\/line arguments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on failure
+\end{DoxyReturn}
+Writing Input Sequence to the file
+
+While loop to identify the base pairs
+
+Internal subproblem
+
+Left subproblem

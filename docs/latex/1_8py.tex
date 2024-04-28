@@ -1,0 +1,55 @@
+\doxysection{C\+:/\+Users/adapa/\+Acads BPHC/4-\/2/daa/asgn2/\+RNA-\/\+Matching-\/\+DP-\/\+Algo/1.py File Reference}
+\hypertarget{1_8py}{}\label{1_8py}\index{C:/Users/adapa/Acads BPHC/4-\/2/daa/asgn2/RNA-\/Matching-\/DP-\/Algo/1.py@{C:/Users/adapa/Acads BPHC/4-\/2/daa/asgn2/RNA-\/Matching-\/DP-\/Algo/1.py}}
+
+
+This file contains the implementation of the RNA folding problem using dynamic programming.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{1_8py_a537edc3988d648458f0d3d99fe5db8a6}{1.\+visualize\+\_\+sequence}} (sequence, pairings)
+\begin{DoxyCompactList}\small\item\em This function visualizes the secondary structure of an RNA sequence along with its pairings using NetworkX and Matplotlib. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{1_8py_ae7a4297475054abc4b57eb5d52ce5557}\label{1_8py_ae7a4297475054abc4b57eb5d52ce5557} 
+str {\bfseries 1.\+filename} = "{}pairings.\+txt"{}
+\begin{DoxyCompactList}\small\item\em Read pairings from file. \end{DoxyCompactList}\item 
+\Hypertarget{1_8py_a6c541ac3e6810c183949ba1962e971e0}\label{1_8py_a6c541ac3e6810c183949ba1962e971e0} 
+{\bfseries 1.\+lines} = file.\+readlines()
+\item 
+\Hypertarget{1_8py_a07dc6096f3a845eb96ba6261fc4648ab}\label{1_8py_a07dc6096f3a845eb96ba6261fc4648ab} 
+{\bfseries 1.\+sequence} = lines\mbox{[}0\mbox{]}.strip()
+\item 
+\Hypertarget{1_8py_af87e53589d61dd26d5d5b9494cffe57a}\label{1_8py_af87e53589d61dd26d5d5b9494cffe57a} 
+list {\bfseries 1.\+pairings} = \mbox{[}(int(x.\+split()\mbox{[}0\mbox{]}), int(x.\+split()\mbox{[}1\mbox{]})) for x in lines\mbox{[}1\+:\mbox{]}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the RNA folding problem using dynamic programming. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{1_8py_a537edc3988d648458f0d3d99fe5db8a6}\label{1_8py_a537edc3988d648458f0d3d99fe5db8a6} 
+\index{1.py@{1.py}!visualize\_sequence@{visualize\_sequence}}
+\index{visualize\_sequence@{visualize\_sequence}!1.py@{1.py}}
+\doxysubsubsection{\texorpdfstring{visualize\_sequence()}{visualize\_sequence()}}
+{\footnotesize\ttfamily 1.visualize\+\_\+sequence (\begin{DoxyParamCaption}\item[{}]{sequence,  }\item[{}]{pairings }\end{DoxyParamCaption})}
+
+
+
+This function visualizes the secondary structure of an RNA sequence along with its pairings using NetworkX and Matplotlib. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sequence} & (str)\+: The RNA sequence. \\
+\hline
+{\em pairings} & (list of tuple)\+: List of tuples representing pairings. Each tuple contains the indices of bases forming a pair. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None 
+\end{DoxyReturn}
